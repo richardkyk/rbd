@@ -147,6 +147,15 @@ export default function getDroppableOver({
     return candidates[0].descriptor.id;
   }
 
+  // One of the candidates has the same Id as the draggable's droppableId,
+  // so use that.
+  const found = candidates.find(
+    (candidate) => candidate.descriptor.id === draggable.descriptor.droppableId,
+  );
+  if (found) {
+    return found.descriptor.id;
+  }
+
   // Multiple options returned
   // Should only occur with really large items
   // Going to use fallback: distance from home
